@@ -15,6 +15,7 @@ public class ZoneHandler {
 	
 	public ZoneHandler(){
 		
+		// assign zone types
 		zoneTypes[0][0] = 1;
 		zoneTypes[0][1] = 1;
 		zoneTypes[0][2] = 1;
@@ -25,9 +26,16 @@ public class ZoneHandler {
 		zoneTypes[2][1] = 3;
 		zoneTypes[2][2] = 5;
 		
+		// assign zone difficulties
+		for (int[] v: zoneDifficulties){
+			for (int j = 0; j < v.length; j++) {
+				v[j] = 1;
+			}
+		}
+		
 		for (int i = 0; i < 3; i++){
 			for (int j = 0; j < 3; j++){
-				zones[i][j] = new Zone(tileCodes, zoneTypes[i][j], 1);
+				zones[i][j] = new Zone(tileCodes, zoneTypes[i][j], zoneDifficulties[i][j]);
 			}
 		}
 		

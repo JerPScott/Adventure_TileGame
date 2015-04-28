@@ -2,7 +2,6 @@ package dev.canuk790.tilegame.entities.creatures.enemies;
 
 import java.awt.image.BufferedImage;
 
-import dev.canuk790.tilegame.entities.creatures.Creature;
 import dev.canuk790.tilegame.entities.creatures.Player;
 
 public class Snake extends Enemy{
@@ -13,10 +12,14 @@ public class Snake extends Enemy{
 	}
 	
 	public void scout(Player player){
+		
 		attackTimer++;
+		
 		//this is where the different enamies get their unique AI
+		
 		xDiff = (x - player.getX())/32;
 		yDiff = (y - player.getY())/32;
+		
 		if ((Math.abs(xDiff) <= 1 && Math.abs(yDiff) <= 1)){
 			//if snake is in range of player and has waited long enough since last attack, attack
 			if (attackTimer > 60){

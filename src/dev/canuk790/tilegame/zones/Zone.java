@@ -34,14 +34,7 @@ public class Zone {
 	//an array of inanimates will need to be added at some point for chests and doors and such
 	
 	public Zone(int[][] tileCodes, int type, int d){
-		
-		difficulty = d;
-		
-		enemies = new Enemy[d];
-		for (int i = 0; i < d; i++){
-			enemies[i] = new Snake(1*32+i, 1*32, Assets.snakeBrown);
-		}
-		
+			
 		// set the default tile
 		//
 		// 1 == beach
@@ -163,6 +156,22 @@ public class Zone {
 		tiles[19][7]= defaultTile1;
 		tiles[10][0]= defaultTile1;
 		tiles[10][14]= defaultTile1;
+		
+		difficulty = d;
+		
+		if (type != 5){
+			enemies = new Enemy[d];
+			for (int i = 0; i < d; i++){
+				int xStart, yStart;
+				do {
+					xStart = (int) Math.floor(Math.random()*(20));
+					yStart = (int) Math.floor(Math.random()*(15));
+				} while (tiles[xStart][yStart].isBlocked);
+				enemies[i] = new Snake(xStart*32, yStart*32, Assets.snakeBrown);
+			}
+		}else{
+			enemies = new Enemy[0];
+		}
 	}
 	
 	public void tick(Player player){
